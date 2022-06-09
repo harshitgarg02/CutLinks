@@ -6,7 +6,12 @@
 
 ## Features
 
-- 
+- Login/Signup
+- Intigrated Database
+- Dashboard
+- Users have choice to choose custom Slug for their Links
+- Rest API buit using flask_restful
+- API authentiction with API Key
 
 ## Installation
 
