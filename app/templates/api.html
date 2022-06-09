@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="align-items-center justify-content-center"
+    style="min-height:90vh;background: url('https://images.unsplash.com/photo-1476445704028-a36e0c798192?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'),linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)); background-blend-mode: overlay; color: #fff;">
+    <center>
+        <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+        <h1 style="font-weight: 500;">API Documentation</h1>
+        <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+    </center>
+    <h3 class="ps-3">URL Shortening</h3>
+    <h5 class="ps-4">Request:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        POST /api/shorten
+    </div>
+    <h5 class="ps-4">Parameters:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        long_url : URL that needs to be shortened.
+    </div>
+    <h5 class="ps-4">Optional Parameters:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        api_key : Token that you get when you register on our website. <br>
+        custom_url : Custom Slug if needed.
+    </div>
+    <h5 class="ps-4">Example Request:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        POST https://cutlinks.herokuapp.com/api/shorten/?api_key=8f6f3c862eb7135b48d1c12b229ed5c3012f68930a43ae07e3280dd8f878d6f4&long_url=https://cutlinks.herokuapp.com/&custom_url=homepage
+    </div>
+    <h5 class="ps-4">Example Response:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        {<br>
+            &emsp;"status": 200,<br>
+            &emsp;"message": "Request Sucessfully Executed.",<br>
+            &emsp;"data": {<br>
+                &emsp;&emsp;"Short URL": "https://cutlinks.herokuapp.com/homepage",<br>
+                &emsp;&emsp;"Destination URL": "https://cutlinks.herokuapp.com/"<br>
+                &emsp;}<br>
+        }<br>
+    </div>
+    <h3 class="ps-3 mt-4">Get URL Info</h3>
+    <h5 class="ps-4">Request:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        GET /api/getinfo
+    </div>
+    <h5 class="ps-4">Parameters:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        short_url : Shortened URL whose data needs to be Fetched.
+    </div>
+    <h5 class="ps-4">Optional Parameters:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        api_key : Token that you get when you register on our website. <br>
+    </div>
+    <h5 class="ps-4">Example Request:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        GET https://cutlinks.herokuapp.com/api/getinfo/?api_key=8f6f3c862eb7135b48d1c12b229ed5c3012f68930a43ae07e3280dd8f878d6f4&short_url=https://cutlinks.herokuapp.com/homepage
+    </div>
+    <h5 class="ps-4">Example Response:</h5>
+    <div class="ms-5 me-5 mt-2 mb-2 p-2"
+        style="background-color: rgb(50, 47, 47); border-radius: 8px; opacity:1;font-size: 12;overflow: auto;">
+        {<br>
+            &emsp;"status": 200,<br>
+            &emsp;"message": "Request Sucessfully Executed.",<br>
+            &emsp;"data": {<br>
+                &emsp;&emsp;"Short URL": "https://cutlinks.herokuapp.com/homepage",<br>
+                &emsp;&emsp;"Destination URL": "https://cutlinks.herokuapp.com/",<br>
+                &emsp;&emsp;"No. of Clicks": 10,<br>
+                &emsp;&emsp;"Created At": "2022-05-11 22:16:09.584971+00:00"<br>
+            &emsp;}<br>
+        }<br>
+    </div>
+    <div class="pt-5">
+        <h1 style="visibility:hidden;">End of Block.</h1>
+    </div>
+</section>
+{% endblock %}

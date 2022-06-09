@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="d-flex align-items-center justify-content-center"
+        style="min-height:90vh;background: url('https://images.unsplash.com/photo-1476445704028-a36e0c798192?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'),linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)); background-blend-mode: overlay;">
+        <div class="row" style="width:100%">
+                <div class="pt-5">
+                        <center>
+                                <h1 style="color: #fff; font-size: 5.5em">CutLink's</p>
+                        </center>
+                </div>
+                <div>
+                        <center>
+                                <h3 style="color: #fff; opacity: 0.7;">Shorten your Link in a single Click</h3>
+                        </center>
+                </div>
+                {% if value %}
+                <div class="p-5">
+                                <center>
+                                        <p style="opacity: 0.6;display: inline;color: red">Entered Custom Slug Already Exists.</p>
+                                </center>
+                </div>
+                {% else %}
+                <div class="p-3">
+                        <span></span>
+                </div>
+                {% endif %}
+                <div class="d-flex align-items-center justify-content-center">
+                        <form id="Main Shorten" class="align-items-center col-lg-10" method="POST" action='.'>
+                                <div class="container">
+                                        <div class="row">
+                                                <div class="p-2 col-lg-5">
+                                                        <input type="text" class="form-control p-2"
+                                                                placeholder="Paste your Long URL" name="url"
+                                                                style="border-radius: 50px;"
+                                                                value="{{url}}" required>
+                                                </div>
+                                                <div class="p-2 col-lg-5">
+                                                        <input type="text" class="form-control p-2"
+                                                                placeholder="Custom Slug" name="custom_url"
+                                                                style="border-radius: 50px;">
+                                                </div>
+                                                <div class="p-2 col-lg-2" align="right">
+                                                        <button type="submit" class="btn btn-primary col-lg-12 p-2"
+                                                                form="Main Shorten" value="Shorten"
+                                                                style="border-radius: 50px;" >Shorten
+                                                                URL</button>
+                                                </div>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
+                <div class="p-4">
+                        <center>
+                                <p style="color: #fff; opacity: 0.7;">Custom Slug field is not mandatory, if it's left
+                                        blank we will automatically generate a slug of length 5. </p>
+                        </center>
+                </div>
+                {% if short_url %}
+                <div class="d-flex align-items-center justify-content-center">
+                        <div class="p-2 col-10 col-lg-8" style="background-color: rgb(189, 189, 189); border-radius: 20px;">
+                                <div class="p-3">
+                                        <strong>Long URL</strong>
+                                </div>
+                                <div class="ps-3 pe-3">
+                                        <div class="p-2" style="background-color: #ffffff; border-radius: 8px; opacity:1;">
+                                                <a href="{{long_url}}" target="_blank" style="text-decoration: none;">{{long_url}}</a>
+                                        </div>
+                                </div>
+                                <div class="p-3">
+                                        <strong>Shortened URL</strong>
+                                </div>
+                                <div class="ps-3 pb-3 pe-3">
+                                        <script>
+                                                function linkCopy() {
+                                                        var $temp = $("<input>");
+                                                        $("body").append($temp);
+                                                        $temp.val("{{short_url}}").select();
+                                                        document.execCommand("copy");
+                                                        $temp.remove();
+                                                }
+                                        </script>
+                                        <button class="btn btn-primary ms-2 pt-2 pb-2 ps-4 pe-4" style="border-radius: 8px;opacity: 0.8;float: right;display:inline;" onclick="linkCopy()">Copy</button>
+                                        <div class="p-2" style="background-color: #fff; border-radius: 8px; opacity:1;font-size: 12;overflow: hidden;">
+                                                <a href="{{short_url}}" target="_blank" style="text-decoration: none;">{{short_url}}</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                {% endif %}
+                <div class="pt-5">
+                        <h1 style="visibility:hidden;">End of Block.</h1>
+                </div>
+        </div>
+</section>
+{% endblock %}

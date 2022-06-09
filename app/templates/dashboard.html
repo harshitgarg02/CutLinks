@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="align-items-center justify-content-center"
+    style="min-height:90vh;background: url('https://images.unsplash.com/photo-1476445704028-a36e0c798192?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'),linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)); background-blend-mode: overlay;">
+    <div>
+        <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+        <center>
+            <h1 style="color: #ffffff; font-weight: bold;">Account Stats</h1>
+        </center>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="p-2 col-11 col-lg-8 " style="background-color: #212529; border-radius: 20px;">
+            <div class="row" style="width:100%">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="p-3 col-4">
+                        <center>
+                            <h1 class="display-1" style="color: #ffffff; font-weight: bold;">{{redirects_count}}</h1>
+                            <h6 class="text-muted " style="color: #fff">Redirects</h6>
+                        </center>
+                    </div>
+                    <div class="p-3 col-4">
+                        <center>
+                            <h1 class="display-1" style="color: #0d6efd; font-weight: bold;">{{links_count}}</h1>
+                            <h6 class="text-muted " style="color: #fff">Links</h6>
+                        </center>
+                    </div>
+                    <div class="p-3 col-4">
+                        <center>
+                            <h1 class="display-1" style="color: #ffffff; font-weight: bold;">{{api_calls_count}}</h1>
+                            <h6 class="text-muted " style="color: #fff">API Calls</h6>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+    <center>
+        <h1 style="color: #ffffff; font-weight: bold;">API Key</h1>
+    </center>
+    <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+    <center>
+        <div class="ps-3 pb-3 pe-3 col-11 col-lg-8">
+            <script>
+                function apiCopy() {
+                    var $temp = $("<input>");
+                    $("body").append($temp);
+                    $temp.val("{{api_key}}").select();
+                    document.execCommand("copy");
+                    $temp.remove();
+                }
+            </script>
+            <button class="btn btn-primary ms-2 pt-2 pb-2 ps-4 pe-4"
+                style="border-radius: 8px;opacity: 0.8;float: right;display:inline;" onclick="apiCopy()">Copy</button>
+            <div class="p-2"
+                style="background-color: #fff; border-radius: 8px; opacity:1;font-size: 12;overflow: hidden;">
+                <a class="text-muted " style="text-decoration: none;">{{api_key}}</a>
+            </div>
+        </div>
+    </center>
+    <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+    <center>
+        <h1 style="color: #ffffff; font-weight: bold;">Links Created by You</h1>
+    </center>
+    <spacer type="horizontal" style="color: rgba(255, 255, 255, 0)">ㅤㅤ</spacer>
+    <div class="ps-3 ps-md-5 pe-5" style="overflow-x: auto;">
+        <table class="table table-borderless" style="width: 100%; color: #fff; ">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Short Link</th>
+                    <th scope="col">Destination Link</th>
+                    <th scope="col">Click Count</th>
+                    <th scope="col">Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in links %}
+                <tr>
+                    <th class="fw-normal"><a href="{{ link[0] }}" target="_blank" style="text-decoration: none;">{{
+                            link[0] }}</a></th>
+                    <th class="fw-normal"><a href="{{ link[1] }}" target="_blank" style="text-decoration: none;">{{
+                            link[1] }}</a></th>
+                    <th class="fw-normal">{{ link[2] }}</th>
+                    <th class="fw-normal">{{ link[3] }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pt-3">
+        <h1 style="visibility:hidden;">End of Block.</h1>
+    </div>
+</section>
+{% endblock %}

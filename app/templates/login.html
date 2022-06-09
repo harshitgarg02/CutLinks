@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+{{value}}
+<style>
+    @media (max-width: 991px) {
+        #imglogin {
+            display: none;
+            height: 0vh;
+        }
+    }
+</style>
+<section class="d-flex align-items-center justify-content-center" style="min-height:90vh">
+    <div class="row" style="width:100%">
+        <div class="d-flex align-items-center justify-content-center col-lg-6"
+            style="width:50%;background: url('/static/bg.png'),linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)); background-blend-mode: overlay;"
+            id="imglogin">
+            <div class="container">
+                <div class="row">
+                    <div class="p-2">
+                        <center>
+                            <h1 style="color: #fff">Welcome to CutLink</h1>
+                        </center>
+                    </div>
+                    <div class="p-2">
+                        <center>
+                            <p style="color: #fff">A free URL Shortener for Everyone, on Logging In you can see the
+                                analytics of the URLs shortened by you.</p>
+                        </center>
+                    </div>
+                    <div class="p-2">
+                        <center>
+                            <a href="/register"><button class="btn"
+                                    style="border: 1px solid #fff;border-radius: 50px;background-color:rgba(255, 255, 255, 0);color: #fff">Register
+                                    Now</button></a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center col-lg-6"
+            style="min-height:90vh;background-color:rgb(214, 214, 214)">
+            <form id="login" class="align-items-center justify-content-center col-md-8" method="POST" action='/login'>
+                <div class="container">
+                    <div class="row">
+                        <div class="p-2">
+                            <center>
+                                <h1 style="opacity: 0.8;">Login</h1>
+                            </center>
+                        </div>
+                        <div class="p-2">
+                            <center>
+                                <p style="opacity: 0.6;">Welcome Back, User!</p>
+                            </center>
+                        </div>
+                        {% if value %}
+                        <div>
+                            <center>
+                                <p style="opacity: 0.6;display: inline;color: red">Username & Password Combination is Invalid!</p>
+                            </center>
+                        </div>
+                        {% endif %}
+                        <div class="p-2">
+                            <input type="text" class="form-control" style="opacity: .5; border-radius: 50px;"
+                                placeholder="Username" name="username" value="{{username}}" required>
+                        </div>
+                        <div class="p-2">
+                            <input type="password" class="form-control" style="opacity: .5; border-radius: 50px;"
+                                placeholder="Password" name="password" required>
+                        </div>
+                        <div class="ps-3">
+                            <input type="checkbox" style="opacity:0.6;" value="rememberMe" name="rememberMe">
+                            <p style="opacity: 0.6;display: inline">Remember Me</p>
+                        </div>
+                        <div class="p-2">
+                            <button type="submit" class="btn btn-primary col-12" style="border-radius: 50px;"
+                                form="login" value="login">Login</button>
+                        </div>
+                        <div class="p-2">
+                            <center>
+                                <p style="opacity: 0.6;">Don't have a account? <a href="/register">Register</a></p>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
