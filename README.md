@@ -1,6 +1,6 @@
 ## CutLink's
 
-**CutLink's** is a **URL Shortner** built using **Python** (**Flask**) that helps user to shorten therir URL both using **Website** and **API** calls.
+**CutLink's** is a **URL Shortener** built using **Python** (**Flask**) that helps user to shorten therir URL both using **Website** and **API** calls.
 
 ![CutLink's Homepage](/Extras/Homepage.png "CutLink's Homepage")
 
